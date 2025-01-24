@@ -2,10 +2,18 @@ pub trait Traits1 {
     fn return_num() -> i32;
     fn return_self() -> Self;
 }
-
+pub trait ToString {
+    fn to_string(&self) -> String;
+}    
 pub struct Str1 {pub x: i32, pub y: usize}
 pub struct Str2 {pub a: usize}
 
+
+impl ToString for Str1 {
+    fn to_string(&self) -> String {
+        format!("{}", self.x)
+    }
+}
 impl Traits1 for Str1 {
     fn return_num() -> i32 {
         1
@@ -32,10 +40,12 @@ mod tests {
     fn traits1_test() {
         let s1: Str1 = Str1{x:1, y:2};
         println!("{}", s1.x);
+
         assert_eq!(1, Str1::return_num());
         assert_eq!(1, Str1::return_self().x);
 
         let s2: Str2 = Str2{a:3};
+        let d: Str2 = Traits1::return_self();
         assert_eq!(2, Str2::return_num());
         assert_eq!(3, Str2::return_self().a);
     }
