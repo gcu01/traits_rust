@@ -1,3 +1,4 @@
+
 pub trait Traits3<'a, T> {
     fn func1(self, arg: T) -> Self;
     fn func2(self, arg: &'a Self) -> Self;
